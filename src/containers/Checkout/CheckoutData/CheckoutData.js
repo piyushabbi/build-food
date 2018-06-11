@@ -27,16 +27,17 @@ class CheckoutData extends Component {
 			ingredients: this.props.ingredients,
 			price: this.props.price,
 			customer: {
-				name: 'John Doe Bhai',
+				name: this.state.orderData.name,
 				address: {
-					street: 'Yemen Street',
-					country: 'Yemen',
-					pincode: '123456'
+					street: this.state.orderData.street,
+					country: this.state.orderData.country,
+					pincode: this.state.orderData.pincode
 				},
-				email: 'john@doe.com'
+				email: this.state.orderData.email
 			},
-			deliveryMethod: 'fastest'
+			deliveryMethod: this.state.orderData.deliveryMethod
 		};
+		// alert(JSON.stringify(order, undefined, 2));
 		axios
 			.post('/orders.json', order)
 			.then(res => {
@@ -48,8 +49,11 @@ class CheckoutData extends Component {
 	};
 
 	changehandler = e => {
+		const updatedOrderData = { ...this.state.orderData };
+		// updatedOrderData[e.target.name] = e.target.value;
 		this.setState({
 			orderData: {
+				...updatedOrderData,
 				[e.target.name]: e.target.value
 			}
 		});
@@ -62,7 +66,7 @@ class CheckoutData extends Component {
 		return (
 			<div className={classes.ContactData}>
 				<h4>Enter your contact data</h4>
-				<form>
+				<form onSubmit={this.orderHandler}>
 					<Input
 						inputtype="input"
 						name="name"
@@ -106,7 +110,7 @@ class CheckoutData extends Component {
 					/>
 					<Input
 						inputtype="select"
-						name="deliveryType"
+						name="deliveryMethod"
 						label="Your Delivery Type"
 						options={['Cheapest', 'Fastest']}
 						value={this.state.orderData.deliveryMethod}
