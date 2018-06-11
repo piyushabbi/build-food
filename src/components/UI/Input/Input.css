@@ -8,14 +8,17 @@
 	font-weight: bold;
 	display: block;
 	margin-bottom: 10px;
+	text-align: left;
 }
 
-.InputEl {
+.InputEl,
+.Select {
 	outline: none;
 	border: 1px solid #ccc;
 	background-color: #fff;
 	font: inherit;
 	padding: 10px 6px;
+	height: 40px;
 	width: 100%;
 	box-sizing: border-box;
 }

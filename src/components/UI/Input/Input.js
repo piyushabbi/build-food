@@ -6,15 +6,49 @@ const Input = props => {
 
 	switch (props.inputtype) {
 		case 'input': {
-			inputEl = <input className={classes.InputEl} {...props} />;
+			inputEl = (
+				<input
+					className={classes.InputEl}
+					onChange={props.changehandler}
+					{...props}
+				/>
+			);
 			break;
 		}
 		case 'textarea': {
-			inputEl = <textarea className={classes.InputEl} {...props} />;
+			inputEl = (
+				<textarea
+					className={classes.InputEl}
+					onChange={props.changehandler}
+					{...props}
+				/>
+			);
+			break;
+		}
+		case 'select': {
+			inputEl = (
+				<select
+					className={classes.Select}
+					onChange={props.changehandler}
+					{...props}
+				>
+					{props.options.map(op => (
+						<option key={op} value={op}>
+							{op}
+						</option>
+					))}
+				</select>
+			);
 			break;
 		}
 		default: {
-			inputEl = <input className={classes.InputEl} {...props} />;
+			inputEl = (
+				<input
+					className={classes.InputEl}
+					onChange={props.changehandler}
+					{...props}
+				/>
+			);
 		}
 	}
 	return (

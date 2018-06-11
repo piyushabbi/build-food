@@ -7,11 +7,13 @@ import Input from '../../../components/UI/Input/Input';
 
 class CheckoutData extends Component {
 	state = {
-		name: '',
-		email: '',
-		address: {
+		orderData: {
+			name: '',
 			street: '',
-			postalCode: ''
+			country: '',
+			pincode: '',
+			email: '',
+			deliveryMethod: ''
 		},
 		isLoading: false
 	};
@@ -45,6 +47,14 @@ class CheckoutData extends Component {
 			.catch(err => console.log(err));
 	};
 
+	changehandler = e => {
+		this.setState({
+			orderData: {
+				[e.target.name]: e.target.value
+			}
+		});
+	};
+
 	render() {
 		if (this.state.isLoading === true) {
 			return <Spinner />;
@@ -55,27 +65,52 @@ class CheckoutData extends Component {
 				<form>
 					<Input
 						inputtype="input"
-						type="text"
 						name="name"
+						label="Name"
 						placeholder="Your Name"
+						value={this.state.orderData.name}
+						changehandler={this.changehandler}
 					/>
 					<Input
 						inputtype="input"
 						type="email"
 						name="email"
+						label="Email"
 						placeholder="Your Email"
+						value={this.state.orderData.email}
+						changehandler={this.changehandler}
 					/>
 					<Input
 						inputtype="input"
-						type="text"
 						name="street"
+						label="Street"
 						placeholder="Your Street"
+						value={this.state.orderData.street}
+						changehandler={this.changehandler}
 					/>
 					<Input
 						inputtype="input"
-						type="text"
-						name="postalCode"
+						name="country"
+						label="Country"
+						placeholder="Your Country"
+						value={this.state.orderData.country}
+						changehandler={this.changehandler}
+					/>
+					<Input
+						inputtype="input"
+						name="pincode"
+						label="Postal Code"
 						placeholder="Your Postal Code"
+						value={this.state.orderData.pincode}
+						changehandler={this.changehandler}
+					/>
+					<Input
+						inputtype="select"
+						name="deliveryType"
+						label="Your Delivery Type"
+						options={['Cheapest', 'Fastest']}
+						value={this.state.orderData.deliveryMethod}
+						changehandler={this.changehandler}
 					/>
 					<Button clicked={this.orderHandler} btnType="Success">
 						Order
