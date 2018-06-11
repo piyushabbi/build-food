@@ -50,15 +50,18 @@ class BurgerBuilder extends Component {
 	};
 
 	purchaseContinueHandler = () => {
-		let queryParams = Object.keys(this.props.ings).map(ingredient => {
-			return `${encodeURIComponent(ingredient)}=${this.props.ings[ingredient]}`;
-		});
-		let queryString = queryParams
-			.concat(`totalPrice=${this.state.totalPrice}`)
-			.join('&');
+		// let queryParams = Object.keys(this.props.ings).map(ingredient => {
+		// 	return `${encodeURIComponent(ingredient)}=${this.props.ings[ingredient]}`;
+		// });
+		// let queryString = queryParams
+		// 	.concat(`totalPrice=${this.state.totalPrice}`)
+		// 	.join('&');
+		// this.props.history.push({
+		// 	pathname: '/checkout',
+		// 	search: `?${queryString}`
+		// });
 		this.props.history.push({
-			pathname: '/checkout',
-			search: `?${queryString}`
+			pathname: '/checkout'
 		});
 	};
 

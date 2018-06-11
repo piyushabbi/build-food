@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import axios from '../../../axios.orders';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -24,7 +26,7 @@ class CheckoutData extends Component {
 			isLoading: true
 		});
 		const order = {
-			ingredients: this.props.ingredients,
+			ingredients: this.props.ings,
 			price: this.props.price,
 			customer: {
 				name: this.state.orderData.name,
@@ -125,4 +127,9 @@ class CheckoutData extends Component {
 	}
 }
 
-export default CheckoutData;
+const mapStateToProps = state => ({
+	ings: state.ingredients,
+	price: state.totalPrice
+});
+
+export default connect(mapStateToProps)(CheckoutData);
