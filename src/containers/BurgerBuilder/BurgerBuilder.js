@@ -9,26 +9,15 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-import * as actionTypes from '../../actions/actions';
 import * as burgerBuilderActions from '../../actions/burgerBuilder';
 
 class BurgerBuilder extends Component {
 	state = {
-		purchasing: false,
-		isLoading: false
+		purchasing: false
 	};
 
 	componentDidMount() {
 		console.log(this.props);
-
-		// axios
-		// 	.get('/ingredients.json')
-		// 	.then(res => {
-		// 		this.setState({
-		// 			ingredients: res.data
-		// 		});
-		// 	})
-		// 	.catch(err => console.log(err));
 	}
 
 	updatePurchaseState() {
@@ -81,9 +70,9 @@ class BurgerBuilder extends Component {
 				purchaseContinued={this.purchaseContinueHandler}
 			/>
 		) : null;
-		if (this.state.isLoading) {
-			orderSummary = <Spinner />;
-		}
+		// if (this.state.isLoading) {
+		// 	orderSummary = <Spinner />;
+		// }
 
 		return (
 			<Aux>
